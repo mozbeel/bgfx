@@ -6,11 +6,6 @@
 
 namespace bgfx
 {
-    typedef ::VkInstance VkInstance;
-    typedef ::VkDevice VkDevice;
-    typedef ::VkPhysicalDevice VkPhysicalDevice;
-    typedef ::VkQueue VkQueue;
-
     struct VulkanHandles
     {
         VkInstance         instance = VK_NULL_HANDLE;
