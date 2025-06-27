@@ -25,7 +25,7 @@ namespace bgfx
     };
 
     // Returns true if Vulkan is active and fills in the handles
-    bool getVulkanHandles(VulkanHandles& out) noexcept;
+    bool getVulkanHandles(VulkanHandles& out);
 }
 
 #endif // BGFX_CONFIG_RENDERER_VULKAN

@@ -18,24 +18,8 @@
 #	import <Metal/Metal.h>
 #endif // BX_PLATFORM_OSX
 
-namespace bgfx { 
-    bool getVulkanHandles(VulkanHandles& out) noexcept
-    {
-        if (g_rendererType != RendererType::Vulkan || g_rendererContext == nullptr)
-        {
-            return false;
-        }
-
-        auto* vk = static_cast<RendererContextVK*>(g_rendererContext);
-        out.instance          = vk->m_instance;
-        out.physicalDevice    = vk->m_physicalDevice;
-        out.device            = vk->m_device;
-        out.queue             = vk->m_queue;
-        out.queueFamilyIndex  = vk->m_queueFamilyIdx;
-
-        return true;
-    }
-
+namespace bgfx
+{
 namespace vk
 {
 	static char s_viewName[BGFX_CONFIG_MAX_VIEWS][BGFX_CONFIG_MAX_VIEW_NAME];
@@ -9661,7 +9645,25 @@ VK_DESTROY
 		kick();
 	}
 
-} /* namespace vk */ } // namespace bgfx
+
+} /* namespace vk */ 
+	bool getVulkanHandles(VulkanHandles& out) {
+		if (g_caps->rendererType != RendererType::Vulkan || g_internalData->context == nullptr)
+		{
+			return false;
+		}
+
+		auto* vk = static_cast<RendererContextVK*>(g_internalData->context);
+		out.instance          = vk->m_instance;
+		out.physicalDevice    = vk->m_physicalDevice;
+		out.device            = vk->m_device;
+		out.queue             = vk->m_queue;
+		out.queueFamilyIndex  = vk->m_queueFamilyIdx;
+
+		return true;
+	}
+
+} // namespace bgfx
 
 #else
 
