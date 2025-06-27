@@ -20,9 +20,11 @@
 
 namespace bgfx
 {
+
 namespace vk
 {
 	static char s_viewName[BGFX_CONFIG_MAX_VIEWS][BGFX_CONFIG_MAX_VIEW_NAME];
+
 
 	inline void setViewType(ViewId _view, const bx::StringView _str)
 	{
@@ -9645,21 +9647,18 @@ VK_DESTROY
 		kick();
 	}
 	bool getVulkanHandles(VulkanHandles& out) {
-    out.instance = m_instance;
-    out.physicalDevice = m_physicalDevice;
-    out.device = m_device;
-    out.queue = m_globalQueue;
-    out.queueFamilyIndex = m_globalQueueFamily;
+    out.instance = s_renderVK->m_instance;
+    out.physicalDevice = s_renderVK->m_physicalDevice;
+    out.device = s_renderVK->m_device;
+    out.queue = s_renderVK->m_globalQueue;
+    out.queueFamilyIndex = s_renderVK->m_globalQueueFamily;
 		
     return true;
 	}
 
 } /* namespace vk */ 
 	bool getVulkanHandles(VulkanHandles& out) {
-    if(!vk::getVulkanHandles(out)) {
-			return false;
-		}
-    return true;
+    return vk::getVulkanHandles(out);
 	}
 
 } // namespace bgfx
