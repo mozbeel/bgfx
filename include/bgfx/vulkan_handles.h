@@ -21,6 +21,7 @@ namespace bgfx
     };
 
     bool getVulkanHandles(VulkanHandles& out);
+
 }
 
 #endif // BGFX_CONFIG_RENDERER_VULKAN
