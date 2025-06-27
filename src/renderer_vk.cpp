@@ -9,6 +9,7 @@
 #	include <bx/pixelformat.h>
 #	include "renderer_vk.h"
 #	include "shader_spirv.h"
+#   include <bgfx/vulkan_handles.h"
 
 #if BX_PLATFORM_OSX
 #	import <Cocoa/Cocoa.h>
@@ -17,7 +18,25 @@
 #	import <Metal/Metal.h>
 #endif // BX_PLATFORM_OSX
 
-namespace bgfx { namespace vk
+namespace bgfx { 
+    bool getVulkanHandles(VulkanHandles& out) noexcept
+    {
+        if (g_rendererType != RendererType::Vulkan || g_rendererContext == nullptr)
+        {
+            return false;
+        }
+
+        auto* vk = static_cast<RendererContextVK*>(g_rendererContext);
+        out.instance          = vk->m_instance;
+        out.physicalDevice    = vk->m_physicalDevice;
+        out.device            = vk->m_device;
+        out.queue             = vk->m_queue;
+        out.queueFamilyIndex  = vk->m_queueFamilyIdx;
+
+        return true;
+    }
+
+namespace vk
 {
 	static char s_viewName[BGFX_CONFIG_MAX_VIEWS][BGFX_CONFIG_MAX_VIEW_NAME];
 
