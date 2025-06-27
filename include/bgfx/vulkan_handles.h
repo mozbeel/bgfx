@@ -1,17 +1,22 @@
 #pragma once
+#include <cstdint>
 
 #if defined(BGFX_CONFIG_RENDERER_VULKAN)
 
-#include <vulkan-local/vulkan.h> // Must define Vulkan types correctly
+// #include <vulkan-local/vulkan.h> // Must define Vulkan types correctly
+typedef struct VkInstance_T*       VkInstance;
+typedef struct VkPhysicalDevice_T* VkPhysicalDevice;
+typedef struct VkDevice_T*         VkDevice;
+typedef struct VkQueue_T*          VkQueue;
 
 namespace bgfx
 {
     struct VulkanHandles
     {
-        VkInstance         instance = VK_NULL_HANDLE;
-        VkPhysicalDevice   physicalDevice = VK_NULL_HANDLE;
-        VkDevice           device = VK_NULL_HANDLE;
-        VkQueue            queue = VK_NULL_HANDLE;
+        VkInstance         instance = nullptr;
+        VkPhysicalDevice   physicalDevice = nullptr;
+        VkDevice           device = nullptr;
+        VkQueue            queue = nullptr;
         uint32_t           queueFamilyIndex = 0;
     };
 

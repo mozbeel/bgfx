@@ -7,7 +7,7 @@
 
 #if BGFX_CONFIG_RENDERER_VULKAN
 #	include <bx/pixelformat.h>
-# include <bgfx/vulkan_handles.h>
+// # include <bgfx/vulkan_handles.h>
 #	include "renderer_vk.h"
 #	include "shader_spirv.h"
 
@@ -9647,22 +9647,6 @@ VK_DESTROY
 
 
 } /* namespace vk */ 
-	bool getVulkanHandles(VulkanHandles& out) {
-		if (g_caps->rendererType != RendererType::Vulkan || g_internalData->context == nullptr)
-		{
-			return false;
-		}
-
-		auto* vk = static_cast<RendererContextVK*>(g_internalData->context);
-		out.instance          = vk->m_instance;
-		out.physicalDevice    = vk->m_physicalDevice;
-		out.device            = vk->m_device;
-		out.queue             = vk->m_queue;
-		out.queueFamilyIndex  = vk->m_queueFamilyIdx;
-
-		return true;
-	}
-
 } // namespace bgfx
 
 #else
