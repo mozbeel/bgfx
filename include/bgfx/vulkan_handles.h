@@ -2,7 +2,7 @@
 
 #if defined(BGFX_CONFIG_RENDERER_VULKAN)
 
-// #include <vulkan-local/vulkan.h> // Must define Vulkan types correctly
+#include <vulkan-local/vulkan.h> // Must define Vulkan types correctly
 
 namespace bgfx
 {
