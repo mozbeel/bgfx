@@ -2,29 +2,24 @@
 
 #if defined(BGFX_CONFIG_RENDERER_VULKAN)
 
+// #include <vulkan-local/vulkan.h> // Must define Vulkan types correctly
+
 namespace bgfx
 {
-    // Forward declarations only (NO <vulkan/vulkan.h>)
-    struct VkInstance_T;
-    struct VkPhysicalDevice_T;
-    struct VkDevice_T;
-    struct VkQueue_T;
-
-    typedef VkInstance_T* VkInstance;
-    typedef VkPhysicalDevice_T* VkPhysicalDevice;
-    typedef VkDevice_T* VkDevice;
-    typedef VkQueue_T* VkQueue;
+    typedef ::VkInstance VkInstance;
+    typedef ::VkDevice VkDevice;
+    typedef ::VkPhysicalDevice VkPhysicalDevice;
+    typedef ::VkQueue VkQueue;
 
     struct VulkanHandles
     {
-        VkInstance         instance = nullptr;
-        VkPhysicalDevice   physicalDevice = nullptr;
-        VkDevice           device = nullptr;
-        VkQueue            queue = nullptr;
+        VkInstance         instance = VK_NULL_HANDLE;
+        VkPhysicalDevice   physicalDevice = VK_NULL_HANDLE;
+        VkDevice           device = VK_NULL_HANDLE;
+        VkQueue            queue = VK_NULL_HANDLE;
         uint32_t           queueFamilyIndex = 0;
     };
 
-    // Returns true if Vulkan is active and fills in the handles
     bool getVulkanHandles(VulkanHandles& out);
 }
 

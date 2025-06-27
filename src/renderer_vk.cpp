@@ -7,9 +7,9 @@
 
 #if BGFX_CONFIG_RENDERER_VULKAN
 #	include <bx/pixelformat.h>
+# include <bgfx/vulkan_handles.h>
 #	include "renderer_vk.h"
 #	include "shader_spirv.h"
-#   include <bgfx/vulkan_handles.h>
 
 #if BX_PLATFORM_OSX
 #	import <Cocoa/Cocoa.h>
